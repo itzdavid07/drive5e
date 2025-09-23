@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript">
+      var g, m, a;
+
+      function inserimento() {
+        g = window.prompt("Che giorno sei nato?")
+        m = window.prompt("Che mese sei nato?")
+        a = window.prompt("Che anno sei nato?")
+      }
+
+      function controlla() {
+        var oggi = new Date();
+        if ((oggi.getFullYear() - a > 18) || (oggi.getFullYear() - a == 18 && oggi.getMonth()+1 > m) || (oggi.getFullYear() - a == 18 && oggi.getMonth()+1 == m && oggi.getDate() >= g)) {
+            document.write("Sei maggiorenne")
+        } else {
+            document.write("Sei minorenne")
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript">
+        inserimento()
+        controlla()
+    </script>
+  </body>
+</html>

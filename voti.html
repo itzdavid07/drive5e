@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript">
+      let matrix = [];
+      let numerostudenti = 6;
+
+      function inserimento() {
+        let name, voto;
+        for (let i = 0; i < numerostudenti; i++) {
+          nome = window.prompt("Inserisci il nome dello studente " + (i+1));
+          voto = parseFloat(window.prompt("Inserisci il voto dello studente " + (i+1)));
+          matrix.push([nome, voto]);
+        }
+      }
+
+      function ricerca() {
+        let index = 0
+        for (let i = 1; i < numerostudenti; i++) {
+          if (matrix[i][1] > matrix[index][1]) {
+            index = i;
+          }
+        }
+        return matrix[index];
+      }
+
+      function output() {
+        let studente = ricerca();
+        document.write("Lo studente con il voto più alto è: " + studente[0] + " con " + studente[1]);
+      }
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript">
+        inserimento();
+        output();
+    </script>
+  </body>
+</html>
