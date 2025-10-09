@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Treno</title>
+    <script type="text/javascript"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        height: 100px;
+        background-color: red;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding-left: 40px;
+      }
+
+      h1 {
+        font-family: "Bebas Neue";
+        font-size: 50px;
+        font-style: italic;
+        letter-spacing: 1.8px;
+        text-shadow: -7px 7px 5px black;
+      }
+
+      section {
+        height: 40vh;
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>GoodTime Trains</h1>
+    </header>
+
+    <section>
+      <form name="train">
+        <select name="partenza">
+          <option value="Roma Termini">Roma Termini</option>
+          <option value="Roma Tiburtina">Roma Tiburtina</option>
+          <option value="Milano Centrale">Milano Centrale</option>
+          <option value="Firenze Santa Maria Novella">Firenze</option>
+          <option value="Roma Montemario">Roma Montemario</option>
+          <option value="La Giustiniana">La Giustiniana</option>
+          <option value="Roma Ostiense">Roma Ostiense</option>
+          <option value="La Storta">La Storta</option>
+        </select>
+
+        <select name="arrivo">
+          <option value="Roma Termini">Roma Termini</option>
+          <option value="Roma Tiburtina">Roma Tiburtina</option>
+          <option value="Milano Centrale">Milano Centrale</option>
+          <option value="Firenze Santa Maria Novella">Firenze</option>
+          <option value="Roma Montemario">Roma Montemario</option>
+          <option value="La Giustiniana">La Giustiniana</option>
+          <option value="Roma Ostiense">Roma Ostiense</option>
+          <option value="La Storta">La Storta</option>
+        </select>
+
+        <select name="persone">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+      </form>
+    </section>
+  </body>
+</html>

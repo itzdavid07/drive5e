@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <script type="text/javascript">
+      function invia() {
+        if (
+          quiz.nome.value == "" ||
+          quiz.eta.value == "" ||
+          quiz.game.value == "" ||
+          quiz.colore.value == ""
+        ) {
+          output.textContent = "Hai compilato erroneamente il form";
+          return;
+        }
+
+        output.textContent =
+          "Ti chiami " +
+          quiz.nome.value +
+          ", hai un'età compresa tra " +
+          quiz.eta.value +
+          ", il tuo gioco preferito è " +
+          quiz.game.value +
+          " e il tuo colore preferito è " +
+          quiz.colore.value;
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px 80px;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      body > div {
+        width: 18vw;
+        height: 80vh;
+        border-radius: 10px;
+        background-color: rgb(255, 174, 174);
+        padding: 50px 80px;
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 70%;
+        justify-content: space-between;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+
+      input[type="radio"] {
+        margin-left: 10px;
+      }
+
+      input[type="text"] {
+        height: 25px;
+        border: none;
+        border-radius: 20px;
+        padding: 0 10px;
+        display: block;
+      }
+
+      input[type="button"] {
+        width: 100px;
+        height: 35px;
+        background-color: white;
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      p {
+        text-align: right;
+        font-size: 30px;
+        width: 40%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Quiz</h1>
+      <form name="quiz">
+        <div>
+          <label class="subtitle" for="nome">Inserisci nome e cognome</label>
+          <input name="nome" type="text" />
+        </div>
+
+        <div>
+          <label class="subtitle" for="">Seleziona età</label>
+          <div>
+            <input type="radio" name="eta" id="eta0" value="0 - 18" />
+            <label for="eta0">0 - 18</label>
+          </div>
+          <div>
+            <input type="radio" name="eta" id="eta1" value="19 - 30" />
+            <label for="eta1">19 - 30</label>
+          </div>
+          <div>
+            <input type="radio" name="eta" id="eta2" value="31 - 50" />
+            <label for="eta2">31 - 40</label>
+          </div>
+          <div>
+            <input type="radio" name="eta" id="eta3" value="51 - ☠️" />
+            <label for="eta3">51 - ☠️</label>
+          </div>
+        </div>
+
+        <div>
+          <label class="subtitle" for="">Seleziona gioco preferito</label>
+          <div>
+            <input type="radio" name="game" id="game0" value="Sekiro" />
+            <label for="game0">Sekiro</label>
+          </div>
+          <div>
+            <input type="radio" name="game" id="game1" value="Silksong" />
+            <label for="game1">Silksong</label>
+          </div>
+          <div>
+            <input type="radio" name="game" id="game2" value="Elden Ring" />
+            <label for="game2">Elden Ring</label>
+          </div>
+        </div>
+
+        <div>
+          <label class="subtitle" for="colore"
+            >Inserisci colore preferito</label
+          >
+          <input name="colore" type="text" />
+        </div>
+
+        <input type="button" value="Invia" onclick="invia()" />
+      </form>
+    </div>
+    <p id="output"></p>
+    <script type="text/javascript">
+      const output = document.getElementById("output");
+    </script>
+  </body>
+</html>
