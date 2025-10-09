@@ -4,26 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Treno</title>
-    <script type="text/javascript"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
       * {
         margin: 0;
         padding: 0;
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
       }
 
       header {
+        position: fixed;
+        inset: 0;
         height: 100px;
         background-color: red;
         color: white;
         display: flex;
         align-items: center;
         padding-left: 40px;
+        z-index: 999;
       }
 
-      h1 {
-        font-family: "Bebas Neue";
+      header h1 {
+        font-family: "Bebas Neue", sans-serif;
         font-size: 50px;
         font-style: italic;
         letter-spacing: 1.8px;
@@ -31,51 +36,277 @@
       }
 
       section {
-        height: 40vh;
-        background-color: lightgray;
+        height: 100vh;
       }
+
+      #sec1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("https://www.articity.it/wp-content/uploads/cascata-marmore-orari-prezzi-percorsi.jpg");
+        background-size: cover;
+        position: relative;
+      }
+
+      #sec1::before {
+        content: "";
+        inset: 0;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      #sec1 .container {
+        width: 85vw;
+        height: 50vh;
+        background-color: rgba(233, 233, 233, 0.7);
+        border-radius: 50px;
+        padding: 80px 100px 0;
+        z-index: 1;
+        position: relative;
+      }
+
+      form {
+        width: 75%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      select {
+        width: 320px;
+        height: 50px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        padding: 0 10px;
+        font-size: 18px;
+      }
+
+      label {
+        display: block;
+        font-size: 18px;
+        margin: 0 5px 5px;
+      }
+
+      #passeggeri {
+        padding: 0;
+        width: 50px;
+        text-align: center;
+      }
+
+      #change {
+        height: 50px;
+        aspect-ratio: 1/1;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        border-radius: 100%;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .ar {
+        display: flex;
+        align-items: center;
+      }
+
+      .ar input {
+        width: 17px;
+        aspect-ratio: 1/1;
+      }
+
+      .ar label {
+        font-weight: bold;
+        display: inline-block;
+        margin: 0 10px;
+      }
+
+      #submit {
+        width: 250px;
+        height: 60px;
+        background-color: white;
+        border: 2px solid white;
+        border-radius: 30px;
+        font-size: 26px;
+        font-family: "Bebas Neue", sans-serif;
+        font-style: italic;
+        padding-top: 5px;
+        position: absolute;
+        bottom: 10%;
+        right: 5%;
+        transition: all 0.3s ease-out, font-style 0s;
+        cursor: pointer;
+      }
+
+      #submit:hover {
+        background-color: black;
+        font-style: normal;
+        color: white;
+      }
+
+      /* #sec2 {
+      } */
     </style>
+    <script type="text/javascript">
+      const distanze = {
+        "Roma Termini": {
+          "Roma Tiburtina": 3,
+          "Milano Centrale": 477,
+          "Firenze S. Maria Novella": 231,
+          "Roma Ostiense": 3,
+        },
+        "Roma Tiburtina": {
+          "Roma Termini": 3,
+          "Milano Centrale": 474,
+          "Firenze S. Maria Novella": 228,
+          "Monte Mario": 7,
+          "La Giustiniana": 11,
+          "Roma Ostiense": 4,
+          "La Storta": 15,
+        },
+        "Milano Centrale": {
+          "Roma Termini": 477,
+          "Roma Tiburtina": 474,
+          "Firenze S. Maria Novella": 249,
+        },
+        "Firenze S. Maria Novella": {
+          "Roma Termini": 231,
+          "Roma Tiburtina": 228,
+          "Milano Centrale": 249,
+        },
+        "Monte Mario": {
+          "Roma Tiburtina": 7,
+          "La Giustiniana": 3,
+          "Roma Ostiense": 6,
+          "La Storta": 17,
+        },
+        "La Giustiniana": {
+          "Roma Tiburtina": 11,
+          "Monte Mario": 3,
+          "Roma Ostiense": 10,
+          "La Storta": 18,
+        },
+        "Roma Ostiense": {
+          "Roma Termini": 3,
+          "Roma Tiburtina": 4,
+          "Monte Mario": 6,
+          "La Giustiniana": 10,
+          "La Storta": 14,
+        },
+        "La Storta": {
+          "Roma Tiburtina": 15,
+          "Monte Mario": 17,
+          "La Giustiniana": 18,
+          "Roma Ostiense": 14,
+        },
+      };
+      const prezzo_per_km = 0.07;
+
+      function switchDest() {
+        let t = partenza.value;
+        partenza.value = arrivo.value;
+        arrivo.value = t;
+      }
+
+      function ricerca() {
+        if (train.partenza.value == train.arrivo.value) return;
+        if (!(train.arrivo.value in distanze[train.partenza.value])) return;
+        if (!train.passeggeri.value) return;
+
+        let prezzo_per_persona = Math.max(
+          distanze[train.partenza.value][train.arrivo.value] * prezzo_per_km,
+          1
+        );
+        let prezzo_totale = prezzo_per_persona * train.passeggeri.value;
+
+        if (train.ar.checked) {
+          prezzo_per_persona *= 2;
+          prezzo_totale *= 2;
+        }
+
+        console.log(prezzo_per_persona, prezzo_totale);
+      }
+    </script>
   </head>
   <body>
     <header>
       <h1>GoodTime Trains</h1>
     </header>
 
-    <section>
-      <form name="train">
-        <select name="partenza">
-          <option value="Roma Termini">Roma Termini</option>
-          <option value="Roma Tiburtina">Roma Tiburtina</option>
-          <option value="Milano Centrale">Milano Centrale</option>
-          <option value="Firenze Santa Maria Novella">Firenze</option>
-          <option value="Roma Montemario">Roma Montemario</option>
-          <option value="La Giustiniana">La Giustiniana</option>
-          <option value="Roma Ostiense">Roma Ostiense</option>
-          <option value="La Storta">La Storta</option>
-        </select>
+    <section id="sec1">
+      <div class="container">
+        <h1>Acquista biglietti</h1>
+        <form name="train">
+          <div>
+            <label for="partenza">Partenza da</label>
+            <select name="partenza" id="partenza">
+              <option value="">-</option>
+              <option value="Roma Termini">Roma Termini</option>
+              <option value="Roma Tiburtina">Roma Tiburtina</option>
+              <option value="Milano Centrale">Milano Centrale</option>
+              <option value="Firenze S. Maria Novella">
+                Firenze S. Maria Novella
+              </option>
+              <option value="Monte Mario">Monte Mario</option>
+              <option value="La Giustiniana">La Giustiniana</option>
+              <option value="Roma Ostiense">Roma Ostiense</option>
+              <option value="La Storta">La Storta</option>
+            </select>
+          </div>
 
-        <select name="arrivo">
-          <option value="Roma Termini">Roma Termini</option>
-          <option value="Roma Tiburtina">Roma Tiburtina</option>
-          <option value="Milano Centrale">Milano Centrale</option>
-          <option value="Firenze Santa Maria Novella">Firenze</option>
-          <option value="Roma Montemario">Roma Montemario</option>
-          <option value="La Giustiniana">La Giustiniana</option>
-          <option value="Roma Ostiense">Roma Ostiense</option>
-          <option value="La Storta">La Storta</option>
-        </select>
+          <div id="change" onclick="switchDest()">⇆</div>
 
-        <select name="persone">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-        </select>
-      </form>
+          <div>
+            <label for="arrivo">Arrivo a</label>
+            <select name="arrivo" id="arrivo">
+              <option value="">-</option>
+              <option value="Roma Termini">Roma Termini</option>
+              <option value="Roma Tiburtina">Roma Tiburtina</option>
+              <option value="Milano Centrale">Milano Centrale</option>
+              <option value="Firenze S. Maria Novella">
+                Firenze S. Maria Novella
+              </option>
+              <option value="Monte Mario">Monte Mario</option>
+              <option value="La Giustiniana">La Giustiniana</option>
+              <option value="Roma Ostiense">Roma Ostiense</option>
+              <option value="La Storta">La Storta</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="passeggeri">Numero Passeggeri</label>
+            <select name="passeggeri" id="passeggeri">
+              <option value="">-</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+
+          <div class="ar">
+            <input type="checkbox" name="ar" id="ar" />
+            <label for="ar">Andata e Ritorno</label>
+          </div>
+
+          <input
+            type="button"
+            id="submit"
+            value="Avvia Ricerca"
+            onclick="ricerca()"
+          />
+        </form>
+      </div>
     </section>
+
+    <section id="sec2"></section>
   </body>
 </html>
