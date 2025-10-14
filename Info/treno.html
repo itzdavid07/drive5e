@@ -57,16 +57,17 @@
 
       #sec1 .container {
         width: 85vw;
-        height: 50vh;
+        height: 60vh;
+        margin-top: 100px;
         background-color: rgba(233, 233, 233, 0.7);
         border-radius: 50px;
-        padding: 80px 100px 0;
+        padding: 60px 80px 0;
         z-index: 1;
         position: relative;
       }
 
       form {
-        width: 75%;
+        width: 90%;
         display: flex;
         flex-wrap: wrap;
         align-items: end;
@@ -74,18 +75,20 @@
         margin-top: 40px;
       }
 
-      select {
+      select,
+      input[type="text"],
+      input[type="date"] {
         width: 320px;
         height: 50px;
         border: 1px solid gray;
         border-radius: 10px;
         padding: 0 10px;
-        font-size: 18px;
+        font-size: 16px;
       }
 
       label {
         display: block;
-        font-size: 18px;
+        font-size: 16px;
         margin: 0 5px 5px;
       }
 
@@ -131,7 +134,7 @@
         background-color: white;
         border: 2px solid white;
         border-radius: 30px;
-        font-size: 26px;
+        font-size: 24px;
         font-family: "Bebas Neue", sans-serif;
         font-style: italic;
         padding-top: 5px;
@@ -148,8 +151,43 @@
         color: white;
       }
 
-      /* #sec2 {
-      } */
+      #sec2 {
+        height: auto;
+        min-height: 100vh;
+      }
+
+      #sec2 .container {
+        width: calc(100% - 120px);
+        min-height: calc(100vh - 120px);
+        margin: 60px;
+        border: 2px solid black;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        position: relative;
+        padding: 120px 30px 0;
+      }
+
+      #striscia {
+        position: absolute;
+        inset: 0;
+        top: 30px;
+        width: 100%;
+        height: 60px;
+        background-color: red;
+      }
+
+      h2 {
+        margin-top: 50px;
+        font-size: 30px;
+      }
+
+      form[name="train2"] {
+        display: block;
+      }
+
+      .passeggero {
+        margin-bottom: 30px;
+      }
     </style>
     <script type="text/javascript">
       const distanze = {
@@ -216,6 +254,42 @@
         if (train.partenza.value == train.arrivo.value) return;
         if (!(train.arrivo.value in distanze[train.partenza.value])) return;
         if (!train.passeggeri.value) return;
+
+        document.getElementById(
+          "corrispondenza"
+        ).innerHTML = `Abbiamo trovato una corrispondenza con la tratta richiesta:<br />
+        &nbsp; - <strong>Partenza:</strong> ${train.partenza.value}<br />
+        &nbsp; - <strong>Arrivo:</strong> ${train.arrivo.value}<br />
+        &nbsp; - <strong>Num. passeggeri:</strong> ${
+          train.passeggeri.value
+        }<br />
+        &nbsp; - <strong>A/R:</strong> ${train.ar.checked ? "Sì" : "No"}`;
+
+        const form = document.getElementsByName("train2")[0];
+        for (let i = 0; i < train.passeggeri.value; i++) {
+          let passeggero = document.createElement("div");
+          passeggero.classList.add("passeggero");
+
+          passeggero.innerHTML = `
+          <h3>Passeggero ${i+1}</h3>
+          <div style="display: flex; gap: 30px;">
+            <div>
+              <label for="nome">Nome:</label>
+              <input type="text" name="nome" id="nome" />
+            </div>
+            <div>
+              <label for="cognome">Cognome:</label>
+              <input type="text" name="cognome" id="cognome" />
+            </div>
+            <div>
+              <label for="data">Data di nascita:</label>
+              <input type="date" name="data" id="data" />
+            </div>
+          </div>
+          `;
+
+          form.appendChild(passeggero);
+        }
 
         let prezzo_per_persona = Math.max(
           distanze[train.partenza.value][train.arrivo.value] * prezzo_per_km,
@@ -307,6 +381,22 @@
       </div>
     </section>
 
-    <section id="sec2"></section>
+    <section id="sec2">
+      <div class="container">
+        <div id="striscia"></div>
+        <p id="corrispondenza">
+          Abbiamo trovato una corrispondenza con la tratta richiesta:<br />
+          &nbsp; - <strong>Partenza:</strong> ${train.partenza.value}<br />
+          &nbsp; - <strong>Arrivo:</strong> ${train.arrivo.value}<br />
+          &nbsp; -
+          <strong>Num. passeggeri:</strong> ${train.passeggeri.value}<br />
+          &nbsp; - <strong>A/R:</strong> ${train.ar.checked ? "Sì" : "No"}
+        </p>
+        <h2>Inserisci le tue generalità</h2>
+        <i>i biglietti non sono nominativi</i>
+        <form name="train2">
+        </form>
+      </div>
+    </section>
   </body>
 </html>
