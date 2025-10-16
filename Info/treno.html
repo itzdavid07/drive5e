@@ -1,290 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Treno</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-      * {
-        margin: 0;
-        padding: 0;
-        font-family: "Roboto", sans-serif;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Treno</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-      header {
-        position: fixed;
-        inset: 0;
-        height: 100px;
-        background-color: red;
-        color: white;
-        display: flex;
-        align-items: center;
-        padding-left: 40px;
-        z-index: 999;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Roboto", sans-serif;
+      box-sizing: border-box;
+    }
 
-      header h1 {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 50px;
-        font-style: italic;
-        letter-spacing: 1.8px;
-        text-shadow: -7px 7px 5px black;
-      }
+    header {
+      position: fixed;
+      inset: 0;
+      height: 100px;
+      background-color: red;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding-left: 40px;
+      z-index: 999;
+    }
 
-      #sec1 {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-image: url("https://www.articity.it/wp-content/uploads/cascata-marmore-orari-prezzi-percorsi.jpg");
-        background-size: cover;
-        position: relative;
-      }
+    header h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 50px;
+      font-style: italic;
+      letter-spacing: 1.8px;
+      text-shadow: -7px 7px 5px black;
+    }
 
-      #sec1::before {
-        content: "";
-        inset: 0;
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.5);
-      }
+    #sec1 {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("https://www.articity.it/wp-content/uploads/cascata-marmore-orari-prezzi-percorsi.jpg");
+      background-size: cover;
+      position: relative;
+    }
 
-      #sec1 .container {
-        width: 85vw;
-        height: 60vh;
-        margin-top: 100px;
-        background-color: rgba(233, 233, 233, 0.7);
-        border-radius: 50px;
-        padding: 60px 80px 0;
-        z-index: 1;
-        position: relative;
-      }
+    #sec1::before {
+      content: "";
+      inset: 0;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
 
-      form {
-        width: 90%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: end;
-        gap: 40px;
-      }
+    #sec1 .container {
+      width: 85vw;
+      height: 60vh;
+      margin-top: 100px;
+      background-color: rgba(233, 233, 233, 0.7);
+      border-radius: 50px;
+      padding: 60px 80px 0;
+      z-index: 1;
+      position: relative;
+    }
 
-      form[name="train"] {
-        margin-top: 30px;
-      }
+    form {
+      width: 90%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 40px;
+    }
 
-      select,
-      input[type="text"],
-      input[type="date"] {
-        width: 320px;
-        height: 50px;
-        border: 1px solid gray;
-        border-radius: 10px;
-        padding: 0 10px;
-        font-size: 16px;
-      }
+    form[name="train"] {
+      margin-top: 30px;
+    }
 
-      label {
-        display: block;
-        font-size: 16px;
-        margin: 0 5px 5px;
-      }
+    select,
+    input[type="text"],
+    input[type="date"] {
+      width: 320px;
+      height: 50px;
+      border: 1px solid gray;
+      border-radius: 10px;
+      padding: 0 10px;
+      font-size: 16px;
+    }
 
-      #passeggeri {
-        padding: 0;
-        width: 50px;
-        text-align: center;
-      }
+    label {
+      display: block;
+      font-size: 16px;
+      margin: 0 5px 5px;
+    }
 
-      #change {
-        height: 50px;
-        aspect-ratio: 1/1;
-        background-color: black;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 30px;
-        border-radius: 100%;
-        cursor: pointer;
-        user-select: none;
-      }
+    #passeggeri {
+      padding: 0;
+      width: 50px;
+      text-align: center;
+    }
 
-      .ar {
-        display: flex;
-        align-items: center;
-      }
+    #change {
+      height: 50px;
+      aspect-ratio: 1/1;
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      border-radius: 100%;
+      cursor: pointer;
+      user-select: none;
+    }
 
-      .ar input {
-        width: 17px;
-        aspect-ratio: 1/1;
-      }
+    .ar {
+      display: flex;
+      align-items: center;
+    }
 
-      .ar label {
-        font-weight: bold;
-        display: inline-block;
-        margin: 0 10px;
-      }
+    .ar input {
+      width: 17px;
+      aspect-ratio: 1/1;
+    }
 
-      input[type="button"] {
-        width: 250px;
-        height: 60px;
-        border-radius: 30px;
-        font-size: 24px;
-        font-family: "Bebas Neue", sans-serif;
-        font-style: italic;
-        padding-top: 5px;
-        transition: all 0.3s ease-out, font-style 0s;
-        cursor: pointer;
-      }
+    .ar label {
+      font-weight: bold;
+      display: inline-block;
+      margin: 0 10px;
+    }
 
-      input[type="button"]:hover {
-        font-style: normal;
-      }
+    input[type="button"] {
+      width: 250px;
+      height: 60px;
+      border-radius: 30px;
+      font-size: 24px;
+      font-family: "Bebas Neue", sans-serif;
+      font-style: italic;
+      padding-top: 5px;
+      transition: all 0.3s ease-out, font-style 0s;
+      cursor: pointer;
+    }
 
-      #submit {
-        position: absolute;
-        bottom: 10%;
-        right: 5%;
-        background-color: white;
-        border: 2px solid white;
-      }
+    input[type="button"]:hover {
+      font-style: normal;
+    }
 
-      #submit:hover {
-        background-color: black;
-        color: white;
-      }
+    #submit {
+      position: absolute;
+      bottom: 10%;
+      right: 5%;
+      background-color: white;
+      border: 2px solid white;
+    }
 
-      #submit2 {
-        color: white;
-        background-color: black;
-        border: 2px solid black;
-        margin-top: 60px;
-      }
+    #submit:hover {
+      background-color: black;
+      color: white;
+    }
 
-      #submit2:hover {
-        background-color: white;
-        color: black;
-      }
+    #submit2 {
+      color: white;
+      background-color: black;
+      border: 2px solid black;
+      margin-top: 60px;
+    }
 
-      #sec2 {
-        min-height: calc(100vh - 100px);
-        padding: 60px;
-      }
+    #submit2:hover {
+      background-color: white;
+      color: black;
+    }
 
-      #sec2 .container {
-        width: 100%;
-        min-height: calc(100vh - 220px);
-        border: 2px solid black;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-        position: relative;
-        padding: 120px 30px 30px;
-      }
+    #sec2,
+    #sec3 {
+      min-height: calc(100vh - 100px);
+      padding: 60px;
+    }
 
-      #striscia {
-        position: absolute;
-        inset: 0;
-        top: 30px;
-        width: 100%;
-        height: 60px;
-        background-color: red;
-      }
+    #sec2 .container,
+    #sec3 .container {
+      width: 100%;
+      min-height: calc(100vh - 220px);
+      border: 2px solid black;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      position: relative;
+      padding: 120px 30px 30px;
+    }
 
-      h2 {
-        margin: 50px 0 30px;
-        font-size: 30px;
-      }
+    .striscia {
+      position: absolute;
+      inset: 0;
+      top: 30px;
+      width: 100%;
+      height: 60px;
+    }
 
-      form[name="train2"] {
-        display: block;
-      }
+    #s1 {
+      background-color: red;
+    }
 
-      .passeggero {
-        margin-bottom: 30px;
-      }
-    </style>
-    <script type="text/javascript">
-      const distanze = {
-        "Roma Termini": {
-          "Roma Tiburtina": 3,
-          "Milano Centrale": 477,
-          "Firenze S. Maria Novella": 231,
-          "Roma Ostiense": 3,
-        },
-        "Roma Tiburtina": {
-          "Roma Termini": 3,
-          "Milano Centrale": 474,
-          "Firenze S. Maria Novella": 228,
-          "Monte Mario": 7,
-          "La Giustiniana": 11,
-          "Roma Ostiense": 4,
-          "La Storta": 15,
-        },
-        "Milano Centrale": {
-          "Roma Termini": 477,
-          "Roma Tiburtina": 474,
-          "Firenze S. Maria Novella": 249,
-        },
-        "Firenze S. Maria Novella": {
-          "Roma Termini": 231,
-          "Roma Tiburtina": 228,
-          "Milano Centrale": 249,
-        },
-        "Monte Mario": {
-          "Roma Tiburtina": 7,
-          "La Giustiniana": 3,
-          "Roma Ostiense": 6,
-          "La Storta": 17,
-        },
-        "La Giustiniana": {
-          "Roma Tiburtina": 11,
-          "Monte Mario": 3,
-          "Roma Ostiense": 10,
-          "La Storta": 18,
-        },
-        "Roma Ostiense": {
-          "Roma Termini": 3,
-          "Roma Tiburtina": 4,
-          "Monte Mario": 6,
-          "La Giustiniana": 10,
-          "La Storta": 14,
-        },
-        "La Storta": {
-          "Roma Tiburtina": 15,
-          "Monte Mario": 17,
-          "La Giustiniana": 18,
-          "Roma Ostiense": 14,
-        },
-      };
-      const prezzi_per_km = [0.2, 0.15, 0.07];
+    #s2 {
+      background-color: black;
+    }
 
-      function switchDest() {
-        let t = partenza.value;
-        partenza.value = arrivo.value;
-        arrivo.value = t;
-      }
+    h2 {
+      margin: 50px 0 30px;
+      font-size: 30px;
+    }
 
-      function ricerca() {
-        const form = document.getElementsByName("train2")[0];
-        form.innerHTML = "";
+    form[name="train2"] {
+      display: block;
+    }
 
-        if (
-          train.partenza.value == train.arrivo.value ||
-          !(train.arrivo.value in distanze[train.partenza.value]) ||
-          !train.passeggeri.value
-        ) {
-          let p = document.createElement("p");
-          p.innerHTML =
-            "Non è stata trovata alcuna corrispondenza con la richiesta effettuata.";
-          form.appendChild(p);
-        } else {
-          let p = document.createElement("p");
-          let h2 = document.createElement("h2");
+    .passeggero {
+      margin-bottom: 30px;
+    }
+  </style>
+  <script type="text/javascript">
+    const distanze = {
+      "Roma Termini": {
+        "Roma Tiburtina": 3,
+        "Milano Centrale": 477,
+        "Firenze S. Maria Novella": 231,
+        "Roma Ostiense": 3,
+      },
+      "Roma Tiburtina": {
+        "Roma Termini": 3,
+        "Milano Centrale": 474,
+        "Firenze S. Maria Novella": 228,
+        "Monte Mario": 7,
+        "La Giustiniana": 11,
+        "Roma Ostiense": 4,
+        "La Storta": 15,
+      },
+      "Milano Centrale": {
+        "Roma Termini": 477,
+        "Roma Tiburtina": 474,
+        "Firenze S. Maria Novella": 249,
+      },
+      "Firenze S. Maria Novella": {
+        "Roma Termini": 231,
+        "Roma Tiburtina": 228,
+        "Milano Centrale": 249,
+      },
+      "Monte Mario": {
+        "Roma Tiburtina": 7,
+        "La Giustiniana": 3,
+        "Roma Ostiense": 6,
+        "La Storta": 17,
+      },
+      "La Giustiniana": {
+        "Roma Tiburtina": 11,
+        "Monte Mario": 3,
+        "Roma Ostiense": 10,
+        "La Storta": 18,
+      },
+      "Roma Ostiense": {
+        "Roma Termini": 3,
+        "Roma Tiburtina": 4,
+        "Monte Mario": 6,
+        "La Giustiniana": 10,
+        "La Storta": 14,
+      },
+      "La Storta": {
+        "Roma Tiburtina": 15,
+        "Monte Mario": 17,
+        "La Giustiniana": 18,
+        "Roma Ostiense": 14,
+      },
+    };
+    const prezzi_per_km = [0.2, 0.15, 0.07];
 
-          p.innerHTML = `
+    function switchDest() {
+      let t = partenza.value;
+      partenza.value = arrivo.value;
+      arrivo.value = t;
+    }
+
+    function ricerca() {
+      const form = document.getElementsByName("train2")[0];
+      form.innerHTML = "";
+
+      const sec2 = document.getElementById("sec2");
+      sec2.style.display = "block";
+
+      if (
+        train.partenza.value == train.arrivo.value ||
+        !(train.arrivo.value in distanze[train.partenza.value]) ||
+        !train.passeggeri.value
+      ) {
+        let p = document.createElement("p");
+        p.innerHTML =
+          "Non è stata trovata alcuna corrispondenza con la richiesta effettuata.";
+        form.appendChild(p);
+      } else {
+        let p = document.createElement("p");
+        let h2 = document.createElement("h2");
+
+        p.innerHTML = `
             Abbiamo trovato una corrispondenza con la tratta richiesta:<br />
             &nbsp; - <strong>Partenza:</strong> ${train.partenza.value}<br />
             &nbsp; - <strong>Arrivo:</strong> ${train.arrivo.value}<br />
@@ -293,16 +306,16 @@
             &nbsp; - <strong>A/R:</strong> ${train.ar.checked ? "Sì" : "No"}
           `;
 
-          h2.innerHTML = "Inserisci le generalità";
+        h2.innerHTML = "Inserisci le generalità";
 
-          form.appendChild(p);
-          form.appendChild(h2);
+        form.appendChild(p);
+        form.appendChild(h2);
 
-          for (let i = 0; i < train.passeggeri.value; i++) {
-            let passeggero = document.createElement("div");
-            passeggero.classList.add("passeggero");
+        for (let i = 0; i < train.passeggeri.value; i++) {
+          let passeggero = document.createElement("div");
+          passeggero.classList.add("passeggero");
 
-            passeggero.innerHTML = `
+          passeggero.innerHTML = `
             <h3>Passeggero ${i + 1}</h3>
             <div style="display: flex; gap: 30px; margin-top: 8px;">
               <div>
@@ -320,12 +333,12 @@
             </div>
             `;
 
-            form.appendChild(passeggero);
-          }
+          form.appendChild(passeggero);
+        }
 
-          let classe = document.createElement("div");
-          let submit = document.createElement("div");
-          classe.innerHTML = `
+        let classe = document.createElement("div");
+        let submit = document.createElement("div");
+        classe.innerHTML = `
           <h2>Classe dei biglietti:</h2>
           <select name="classe" id="clase">
             <option value="">-</option>
@@ -334,7 +347,7 @@
             <option value="2">Seconda Classe</option>
           </select>
           `;
-          submit.innerHTML = `
+        submit.innerHTML = `
           <input
             type="button"
             id="submit2"
@@ -343,108 +356,112 @@
           />
           `;
 
-          form.appendChild(classe);
-          form.appendChild(submit);
-        }
-
-        const target = document.getElementById("sec2");
-        target.scrollIntoView({ behavior: "smooth" });
-
-        // let prezzo_per_persona = Math.max(
-        //   distanze[train.partenza.value][train.arrivo.value] * prezzi_per_km[train2],
-        //   1
-        // );
-        // let prezzo_totale = prezzo_per_persona * train.passeggeri.value;
-
-        // if (train.ar.checked) {
-        //   prezzo_per_persona *= 2;
-        //   prezzo_totale *= 2;
-        // }
-
-        // console.log(prezzo_per_persona, prezzo_totale);
+        form.appendChild(classe);
+        form.appendChild(submit);
       }
-    </script>
-  </head>
-  <body>
-    <header>
-      <h1>GoodTime Trains</h1>
-    </header>
 
-    <section id="sec1">
-      <div class="container">
-        <h1>Acquista biglietti</h1>
-        <form name="train">
-          <div>
-            <label for="partenza">Partenza da</label>
-            <select name="partenza" id="partenza">
-              <option value="">-</option>
-              <option value="Roma Termini">Roma Termini</option>
-              <option value="Roma Tiburtina">Roma Tiburtina</option>
-              <option value="Milano Centrale">Milano Centrale</option>
-              <option value="Firenze S. Maria Novella">
-                Firenze S. Maria Novella
-              </option>
-              <option value="Monte Mario">Monte Mario</option>
-              <option value="La Giustiniana">La Giustiniana</option>
-              <option value="Roma Ostiense">Roma Ostiense</option>
-              <option value="La Storta">La Storta</option>
-            </select>
-          </div>
+      const target = document.getElementById("sec2");
+      target.scrollIntoView({ behavior: "smooth" });
 
-          <div id="change" onclick="switchDest()">⇆</div>
+      // let prezzo_per_persona = Math.max(
+      //   distanze[train.partenza.value][train.arrivo.value] * prezzi_per_km[train2],
+      //   1
+      // );
+      // let prezzo_totale = prezzo_per_persona * train.passeggeri.value;
 
-          <div>
-            <label for="arrivo">Arrivo a</label>
-            <select name="arrivo" id="arrivo">
-              <option value="">-</option>
-              <option value="Roma Termini">Roma Termini</option>
-              <option value="Roma Tiburtina">Roma Tiburtina</option>
-              <option value="Milano Centrale">Milano Centrale</option>
-              <option value="Firenze S. Maria Novella">
-                Firenze S. Maria Novella
-              </option>
-              <option value="Monte Mario">Monte Mario</option>
-              <option value="La Giustiniana">La Giustiniana</option>
-              <option value="Roma Ostiense">Roma Ostiense</option>
-              <option value="La Storta">La Storta</option>
-            </select>
-          </div>
+      // if (train.ar.checked) {
+      //   prezzo_per_persona *= 2;
+      //   prezzo_totale *= 2;
+      // }
 
-          <div>
-            <label for="passeggeri">Numero Passeggeri</label>
-            <select name="passeggeri" id="passeggeri">
-              <option value="">-</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-            </select>
-          </div>
+      // console.log(prezzo_per_persona, prezzo_totale);
+    }
+  </script>
+</head>
 
-          <div class="ar">
-            <input type="checkbox" name="ar" id="ar" />
-            <label for="ar">Andata e Ritorno</label>
-          </div>
+<body>
+  <header>
+    <h1>GoodTime Trains</h1>
+  </header>
 
-          <input
-            type="button"
-            id="submit"
-            value="Avvia Ricerca"
-            onclick="ricerca()"
-          />
-        </form>
-      </div>
-    </section>
+  <section id="sec1">
+    <div class="container">
+      <h1>Acquista biglietti</h1>
+      <form name="train">
+        <div>
+          <label for="partenza">Partenza da</label>
+          <select name="partenza" id="partenza">
+            <option value="">-</option>
+            <option value="Roma Termini">Roma Termini</option>
+            <option value="Roma Tiburtina">Roma Tiburtina</option>
+            <option value="Milano Centrale">Milano Centrale</option>
+            <option value="Firenze S. Maria Novella">
+              Firenze S. Maria Novella
+            </option>
+            <option value="Monte Mario">Monte Mario</option>
+            <option value="La Giustiniana">La Giustiniana</option>
+            <option value="Roma Ostiense">Roma Ostiense</option>
+            <option value="La Storta">La Storta</option>
+          </select>
+        </div>
 
-    <section id="sec2">
-      <div class="container">
-        <div id="striscia"></div>
-        <form name="train2"></form>
-      </div>
-    </section>
-  </body>
+        <div id="change" onclick="switchDest()">⇆</div>
+
+        <div>
+          <label for="arrivo">Arrivo a</label>
+          <select name="arrivo" id="arrivo">
+            <option value="">-</option>
+            <option value="Roma Termini">Roma Termini</option>
+            <option value="Roma Tiburtina">Roma Tiburtina</option>
+            <option value="Milano Centrale">Milano Centrale</option>
+            <option value="Firenze S. Maria Novella">
+              Firenze S. Maria Novella
+            </option>
+            <option value="Monte Mario">Monte Mario</option>
+            <option value="La Giustiniana">La Giustiniana</option>
+            <option value="Roma Ostiense">Roma Ostiense</option>
+            <option value="La Storta">La Storta</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="passeggeri">Numero Passeggeri</label>
+          <select name="passeggeri" id="passeggeri">
+            <option value="">-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+
+        <div class="ar">
+          <input type="checkbox" name="ar" id="ar" />
+          <label for="ar">Andata e Ritorno</label>
+        </div>
+
+        <input type="button" id="submit" value="Avvia Ricerca" onclick="ricerca()" />
+      </form>
+    </div>
+  </section>
+
+  <section id="sec2" style="display:none;">
+    <div class="container">
+      <div class="striscia" id="s1"></div>
+      <form name="train2"></form>
+    </div>
+  </section>
+
+  <section id="sec3">
+    <div class="container">
+      <div class="striscia" id="s2"></div>
+      <p></p>
+    </div>
+  </section>
+</body>
+
 </html>
